@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import { ProjectContext } from './ProjectContext';
 
-const Todos = ({ currentProject }) => {
-  const projectTodos = currentProject.todos.length ? (
-    currentProject.todos.map(todo => {
+const Todos = () => {
+  const [projects, setProjects] = useContext(ProjectContext);
+
+  const projectTodos = projects.currentProject.todos.length ? (
+    projects.currentProject.todos.map(todo => {
       return (
         <div key={todo.id}>
           <div>
@@ -13,12 +16,12 @@ const Todos = ({ currentProject }) => {
       );
     })
   ) : (
-    <p>You have no Projects!</p>
+    <p>This project has no Todos. </p>
   );
 
   return (
     <div className="curProject">
-      <h1>{currentProject.name}</h1>
+      <h1>{projects.currentProject.name}</h1>
       {projectTodos}
     </div>
   );
