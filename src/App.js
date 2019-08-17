@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Projects from './Projects';
+import Todos from './Todos';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    projects: [
+      {
+        id: 1,
+        name: "DailyDo's",
+        todos: [
+          { id: 1, content: 'Wake up' },
+          { id: 2, content: 'Odin Project' },
+          { id: 3, content: 'Sleep' }
+        ]
+      },
+      {
+        id: 2,
+        name: "WeeklyDo's",
+        todos: [
+          { id: 1, content: 'Finish Project' },
+          { id: 2, content: 'Find New Project' },
+          { id: 3, content: 'Start New Project' }
+        ]
+      }
+    ],
+    currentProject: {
+      id: 2,
+      name: "WeeklyDo's",
+      todos: [
+        { id: 1, content: 'Finish Project' },
+        { id: 2, content: 'Find New Project' },
+        { id: 3, content: 'Start New Project' }
+      ]
+    }
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Projects</h1>
+        <Projects projects={this.state.projects} />
+        <Todos currentProject={this.state.currentProject} />
+      </div>
+    );
+  }
 }
 
 export default App;
