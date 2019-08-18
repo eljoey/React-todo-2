@@ -3,21 +3,36 @@ import { ProjectContext } from './ProjectContext';
 import AddTodo from './AddTodo';
 
 const Todos = () => {
-  const [projects] = useContext(ProjectContext);
+  const [projects, setProjects] = useContext(ProjectContext);
 
-  let currentProject = projects.projects.filter(
-    project => project.id === projects.curProjID
-  )[0];
+  //index of selected project
+  const index = projects.projects
+    .map(project => {
+      return project.id;
+    })
+    .indexOf(projects.curProjID);
 
-  const delTodo = () => {
-    //Add ability to del todos use add todo as ref
+  const delTodo = clickedTodo => {
+    //filters out deleted todo
+    const filteredTodos = projects.projects[index].todos.filter(
+      todo => todo.id !== clickedTodo.id
+    );
+
+    //set filteredTodos to be new info
+    projects.projects[index].todos = filteredTodos;
+
+    setProjects(prevProjects => ({
+      projects: [...prevProjects.projects],
+      curProjID: prevProjects.curProjID,
+      id: prevProjects.id
+    }));
   };
 
-  let projectTodos = currentProject.todos.length ? (
-    currentProject.todos.map(todo => {
+  const projectTodos = projects.projects[index].todos.length ? (
+    projects.projects[index].todos.map(todo => {
       return (
         <div key={todo.id}>
-          <div>
+          <div className="todos">
             {todo.content}
             <i
               className="fas fa-trash"
@@ -30,14 +45,14 @@ const Todos = () => {
       );
     })
   ) : (
-    <p>This project has no Todos. </p>
+    <p>This project has no Todos. Use the form above to add some! </p>
   );
 
   return (
     <div className="curProject">
-      <h1>{currentProject.name}</h1>
+      <h1>{projects.projects[index].name}</h1>
       <AddTodo />
-      {projectTodos}
+      <div className="todo-container">{projectTodos}</div>
     </div>
   );
 };

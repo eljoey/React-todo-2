@@ -21,13 +21,11 @@ const Projects = () => {
     let check = projects.curProjID;
 
     //If currently selected Project gets deleted it will default to the first project
-    const isDelProjCurrent = proj => {
-      if (proj.id === projects.curProjID) {
-        check = validProjects[0].id;
-      } else {
-        check = projects.curProjID;
-      }
-    };
+    if (proj.id === projects.curProjID) {
+      check = validProjects[0].id;
+    } else {
+      check = projects.curProjID;
+    }
 
     setProjects(prevProjects => ({
       projects: [...validProjects],
@@ -41,6 +39,7 @@ const Projects = () => {
       return (
         <div key={project.id} className="projects-info">
           <div
+            className="projName"
             onClick={() => {
               selectProject(project);
             }}
@@ -57,14 +56,14 @@ const Projects = () => {
       );
     })
   ) : (
-    <p>You have no Projects!</p>
+    <p>You have no Projects! Add more in the form above.</p>
   );
 
   return (
     <div className="projects">
       <h1>Projects</h1>
       <AddProject />
-      <div>{projectList}</div>
+      <div className="proj-list">{projectList}</div>
     </div>
   );
 };

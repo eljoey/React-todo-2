@@ -10,17 +10,22 @@ const AddTodo = () => {
     setContent(e.target.value);
   };
 
-  const addTodo = e => {
+  const newTodo = e => {
     e.preventDefault();
+    if (content === '') return;
     let newID = shortid.generate();
-    let currentProjectTodos = projects.projects[projects.curProjID].todos;
-    projects.projects[projects.curProjID].todos = [
-      ...currentProjectTodos,
-      {
-        id: newID,
-        content: content
-      }
-    ];
+
+    //index of selected project
+    let index = projects.projects
+      .map(project => {
+        return project.id;
+      })
+      .indexOf(projects.curProjID);
+
+    projects.projects[index].todos.push({
+      id: newID,
+      content: content
+    });
 
     setProjects(prevProjects => ({
       projects: [...prevProjects.projects],
@@ -33,7 +38,7 @@ const AddTodo = () => {
 
   return (
     <div>
-      <form onSubmit={addTodo}>
+      <form onSubmit={newTodo}>
         <input
           type="text"
           placeholder="Add a Todo to your Project."

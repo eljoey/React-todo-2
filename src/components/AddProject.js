@@ -11,6 +11,7 @@ const AddProject = () => {
 
   const newProject = e => {
     e.preventDefault();
+    if (name === '') return;
     let newID = projects.id + 1;
 
     setProjects(prevProjects => ({
@@ -18,7 +19,7 @@ const AddProject = () => {
         ...prevProjects.projects,
         { id: newID, name: name, todos: [] }
       ],
-      curProjID: prevProjects.curProjID,
+      curProjID: newID,
 
       id: newID
     }));

@@ -1,8 +1,69 @@
 .App {
+  display: flex;
+  justify-content: space-evenly;
   text-align: center;
+  padding: 2vh 2vw;
+  background: #f0f2f0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #f0f2f0,
+    #000c40
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #f0f2f0,
+    #60636e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+h1 {
+  border-bottom: 1px solid black;
+}
+
+.projects {
+  height: 96vh;
+  width: 22vw;
+  border-right: 1px solid black;
+  padding-right: 1vw;
 }
 
 .projects-info {
   display: flex;
-  justify-content: center;
+  border-bottom: 1px solid black;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projName:hover {
+  font-weight: bold;
+}
+
+i:hover {
+  color: rgb(250, 35, 35);
+}
+
+.proj-list {
+  margin-top: 5px;
+  font-size: 25px;
+}
+
+.curProject {
+  min-height: 96vh;
+  min-width: 72vw;
+  padding: 0 1vw;
+}
+
+.todo-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  font-size: 20px;
+}
+
+.todos {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  margin: 5px;
 }
