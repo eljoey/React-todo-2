@@ -11,12 +11,13 @@ const Projects = () => {
       curProjID: proj.id,
       id: prevProjects.id
     }));
+    console.log(proj.id);
   };
 
   const projectList = projects.projects.length ? (
     projects.projects.map(project => {
       return (
-        <div key={project.id}>
+        <div key={project.id} className="projects-info">
           <div
             onClick={() => {
               selectProject(project);

@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import { ProjectContext } from './ProjectContext';
-import shortid from 'shortid';
 
 const AddProject = () => {
   const [name, setName] = useState('');
@@ -24,6 +23,7 @@ const AddProject = () => {
       id: newID
     }));
     setName('');
+    console.log('ok');
   };
 
   return (

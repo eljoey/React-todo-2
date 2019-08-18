@@ -27,6 +27,8 @@ const AddTodo = () => {
       curProjID: prevProjects.curProjID,
       id: prevProjects.id
     }));
+
+    setContent('');
   };
 
   return (
