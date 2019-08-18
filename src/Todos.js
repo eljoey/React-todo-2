@@ -1,11 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { ProjectContext } from './ProjectContext';
+import AddTodo from './AddTodo';
 
 const Todos = () => {
   const [projects, setProjects] = useContext(ProjectContext);
 
-  const projectTodos = projects.currentProject.todos.length ? (
-    projects.currentProject.todos.map(todo => {
+  let currentProject = projects.projects.filter(
+    project => project.id === projects.curProjID
+  )[0];
+  console.log(currentProject);
+
+  let projectTodos = currentProject.todos.length ? (
+    currentProject.todos.map(todo => {
       return (
         <div key={todo.id}>
           <div>
@@ -21,7 +27,8 @@ const Todos = () => {
 
   return (
     <div className="curProject">
-      <h1>{projects.currentProject.name}</h1>
+      <h1>{currentProject.name}</h1>
+      <AddTodo />
       {projectTodos}
     </div>
   );

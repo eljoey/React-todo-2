@@ -9,7 +9,6 @@ class App extends Component {
     return (
       <ProjectProvider>
         <div className="App">
-          <h1>Projects</h1>
           <Projects />
           <Todos />
         </div>

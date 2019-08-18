@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ProjectContext } from './ProjectContext';
+import AddProject from './AddProject';
 
 const Projects = () => {
   const [projects, setProjects] = useContext(ProjectContext);
@@ -19,7 +20,13 @@ const Projects = () => {
     <p>You have no Projects!</p>
   );
 
-  return <div className="projects">{projectList}</div>;
+  return (
+    <div className="projects">
+      <h1>Projects</h1>
+      <AddProject />
+      <div>{projectList}</div>
+    </div>
+  );
 };
 
 export default Projects;
