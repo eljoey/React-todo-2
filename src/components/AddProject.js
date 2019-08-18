@@ -23,7 +23,6 @@ const AddProject = () => {
       id: newID
     }));
     setName('');
-    console.log('ok');
   };
 
   return (

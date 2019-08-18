@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import Projects from './Projects';
-import Todos from './Todos';
-import { ProjectProvider } from './ProjectContext';
+import Projects from './components/Projects';
+import Todos from './components/Todos';
+import { ProjectProvider } from './components/ProjectContext';
 
 class App extends Component {
   render() {
