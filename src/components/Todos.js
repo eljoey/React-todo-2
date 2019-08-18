@@ -1,13 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ProjectContext } from './ProjectContext';
 import AddTodo from './AddTodo';
 
 const Todos = () => {
-  const [projects, setProjects] = useContext(ProjectContext);
+  const [projects] = useContext(ProjectContext);
 
   let currentProject = projects.projects.filter(
     project => project.id === projects.curProjID
   )[0];
+
+  const delTodo = () => {
+    //Add ability to del todos use add todo as ref
+  };
 
   let projectTodos = currentProject.todos.length ? (
     currentProject.todos.map(todo => {
@@ -15,7 +19,12 @@ const Todos = () => {
         <div key={todo.id}>
           <div>
             {todo.content}
-            <i className="fas fa-trash" />
+            <i
+              className="fas fa-trash"
+              onClick={() => {
+                delTodo(todo);
+              }}
+            />
           </div>
         </div>
       );

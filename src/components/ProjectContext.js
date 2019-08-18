@@ -1,8 +1,4 @@
-import React, { useState, createContext, useReducer, useEffect } from 'react';
-
-// let reducer = (projects, newProjects) => {
-//   return { ...projects, ...newProjects };
-// };
+import React, { useState, createContext, useEffect } from 'react';
 
 const initialState = {
   projects: [
@@ -34,8 +30,10 @@ const localState = JSON.parse(localStorage.getItem('projects'));
 export const ProjectContext = createContext();
 
 export const ProjectProvider = props => {
+  //loads local storage first if none then will load initial state from above
   const [projects, setProjects] = useState(localState || initialState);
 
+  //stores projects to local storage(will update every time state changes)
   useEffect(() => {
     localStorage.setItem('projects', JSON.stringify(projects));
   }, [projects]);

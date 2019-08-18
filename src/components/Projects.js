@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { ProjectContext } from './ProjectContext';
 import AddProject from './AddProject';
 
@@ -11,7 +11,29 @@ const Projects = () => {
       curProjID: proj.id,
       id: prevProjects.id
     }));
-    console.log(proj.id);
+  };
+
+  const delProject = proj => {
+    let validProjects = projects.projects.filter(
+      project => project.id !== proj.id
+    );
+
+    let check = projects.curProjID;
+
+    //If currently selected Project gets deleted it will default to the first project
+    const isDelProjCurrent = proj => {
+      if (proj.id === projects.curProjID) {
+        check = validProjects[0].id;
+      } else {
+        check = projects.curProjID;
+      }
+    };
+
+    setProjects(prevProjects => ({
+      projects: [...validProjects],
+      curProjID: check,
+      id: prevProjects.id
+    }));
   };
 
   const projectList = projects.projects.length ? (
@@ -25,7 +47,12 @@ const Projects = () => {
           >
             {project.name}
           </div>
-          <i className="fas fa-trash" />
+          <i
+            className="fas fa-trash"
+            onClick={() => {
+              delProject(project);
+            }}
+          />
         </div>
       );
     })
