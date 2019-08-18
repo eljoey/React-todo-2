@@ -5,14 +5,26 @@ import AddProject from './AddProject';
 const Projects = () => {
   const [projects, setProjects] = useContext(ProjectContext);
 
+  const selectProject = proj => {
+    setProjects(prevProjects => ({
+      projects: [...prevProjects.projects],
+      curProjID: proj.id,
+      id: prevProjects.id
+    }));
+  };
+
   const projectList = projects.projects.length ? (
     projects.projects.map(project => {
       return (
         <div key={project.id}>
-          <div>
+          <div
+            onClick={() => {
+              selectProject(project);
+            }}
+          >
             {project.name}
-            <i className="fas fa-trash" />
           </div>
+          <i className="fas fa-trash" />
         </div>
       );
     })

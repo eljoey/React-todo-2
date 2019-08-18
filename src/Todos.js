@@ -8,7 +8,6 @@ const Todos = () => {
   let currentProject = projects.projects.filter(
     project => project.id === projects.curProjID
   )[0];
-  console.log(currentProject);
 
   let projectTodos = currentProject.todos.length ? (
     currentProject.todos.map(todo => {
